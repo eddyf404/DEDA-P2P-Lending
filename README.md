@@ -74,6 +74,13 @@ boosting implementation can be selected explicitly for comparison.
 - `make_figures.py`: creates the main analysis figures.
 - `run_tabpfn_remote.py`: optional experiment using the hosted Prior Labs
   TabPFN API.
+- `conformal_core.py`: reusable split-conformal utilities for binary
+  prediction sets and conformal selection.
+- `prepare_conformal_data.py`: builds the conformal master file from the main
+  pipeline outputs and runs data-readiness checks.
+- `run_conformal_experiments.py`: runs the extended conformal-inference
+  experiments, including group-conditional coverage, distribution shift,
+  online adaptation, label robustness, selection, and TabPFN wrapping.
 - `DATA.md`: data source, expected directory layout, and publication rules.
 - `requirements.txt`: dependencies for the local analysis.
 - `requirements-tabpfn.txt`: additional dependency for the hosted TabPFN run.
@@ -111,6 +118,42 @@ Create the final figures with:
 
 ```bash
 python make_figures.py
+```
+
+## Extended conformal experiments
+
+After running the main pipeline, build the derived file used by the conformal
+experiments:
+
+```bash
+python prepare_conformal_data.py build-master --data-dir data
+```
+
+Optional readiness checks:
+
+```bash
+python prepare_conformal_data.py check-tabpfn --data-dir data
+python prepare_conformal_data.py diagnose-window --data-dir data
+```
+
+Run all conformal-inference experiments:
+
+```bash
+python run_conformal_experiments.py all \
+  --master data/conformal_master.csv \
+  --outdir figures/conformal
+```
+
+Individual experiments can also be run:
+
+```bash
+python run_conformal_experiments.py four-score --master data/conformal_master.csv
+python run_conformal_experiments.py mondrian --master data/conformal_master.csv
+python run_conformal_experiments.py shift-break --master data/conformal_master.csv
+python run_conformal_experiments.py online-adapt --master data/conformal_master.csv
+python run_conformal_experiments.py label-robust --master data/conformal_master.csv
+python run_conformal_experiments.py selection --master data/conformal_master.csv
+python run_conformal_experiments.py tabpfn-native --master data/conformal_master.csv
 ```
 
 ## Optional TabPFN experiment
