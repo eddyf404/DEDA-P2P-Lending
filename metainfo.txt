@@ -1,0 +1,26 @@
+Name of Quantlet: Credit Risk Prediction in P2P Lending
+
+Description: "Empirical analysis of credit-risk prediction in peer-to-peer lending using the Bondora public loan dataset. The project constructs alternative default labels, compares logistic regression, LightGBM, TabPFN-3, and Bondora's published Probability of Default score, evaluates discrimination and calibration across prediction horizons, and applies split-conformal prediction to quantify uncertainty under country and time-based distribution shift. Visualizations cover country-level default patterns, label sensitivity, probability calibration, model-horizon performance, vintage effects, and conformal coverage."
+
+Keywords: peer-to-peer lending, credit risk, Bondora, default prediction, probability of default, calibration, AUC, Brier score, conformal prediction, split conformal prediction, distribution shift, country-specific evaluation, prediction horizon, logistic regression, LightGBM, TabPFN, statistical learning, financial econometrics, data analysis, visualization
+
+Author: Wolfgang Karl Härdle, Jinzhao Fu
+Submitted_By: Jinzhao Fu
+Submitted_To: DEDA-Seminar_Courselet
+
+Institution: Humboldt University of Berlin
+Email: "jinzhao.fu@student.hu-berlin.de"
+
+Created_On: 2026-06-22
+Code_Files: bondora_credit_risk_analysis.py, conformal_experiments.py, run_tabpfn_remote.py
+
+Data_Files: LoanData.csv
+
+Output_Files: closed_loans.csv, loans_clean.csv, step5_predictions.csv, conformal_master.csv, country_default_rates.png, default_label_sensitivity.png, pod_calibration_1year.png, pod_calibration_lifetime.png, brier_score_decomposition.png, entry_vintage_default_rates.png, phase_a_summary.csv, split_conformal_coverage_width.png, group_conditional_coverage.png, distribution_shift_diagnostic.png, online_adaptation_coverage.png, label_robustness_coverage.png, conformal_selection_fdr.png, tabpfn_conformal_coverage.png
+
+Libraries: numpy, pandas, matplotlib, scikit-learn, lightgbm, pyarrow, tabpfn-client
+Programming_Language: Python
+Quantlet_Class: Application Quantlet
+Quantlet_Type: Analysis, Visualization, Financial Econometrics, Machine Learning
+
+Version: 1.0

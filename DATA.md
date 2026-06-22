@@ -25,7 +25,7 @@ The analysis scripts expect this local layout:
 
 ```text
 data/
-  LoanData.csv
+  LoanData.csv              # source file downloaded from Kaggle
   closed_loans.csv
   loans_clean.csv
   step5_predictions.csv
@@ -33,16 +33,19 @@ data/
 
 figures/
   pipeline/
+  phase_a/
   conformal/
 ```
 
-Only source code and documentation should be committed. The `.gitignore` file
-excludes raw data, generated CSV files, generated figures, slide decks, PDFs,
-and large archives.
+Only source code and documentation should be committed. `LoanData.csv` is the
+external input data file. The other CSV files listed above are generated
+intermediate or analysis outputs. The `.gitignore` file excludes raw data,
+generated CSV files, generated figures, slide decks, PDFs, and large archives.
 
 ## Generated Files
 
-`bondora_reanalysis.py` creates the core pipeline outputs, including:
+`bondora_credit_risk_analysis.py pipeline` creates the core pipeline outputs,
+including:
 
 - `data/closed_loans.csv`
 - `data/loans_clean.csv`
@@ -50,11 +53,13 @@ and large archives.
 - `data/step5_model_horizon_metrics.csv`
 - `data/step7_conformal_transfer.csv`
 
-`prepare_conformal_data.py` merges the relevant pipeline outputs into:
+`bondora_credit_risk_analysis.py build-master` merges the relevant pipeline
+outputs into:
 
 - `data/conformal_master.csv`
 
-`run_conformal_experiments.py` writes summary tables and figures to:
+`conformal_experiments.py slides` writes the conformal figures used in the
+final slides to:
 
 - `figures/conformal/`
 
